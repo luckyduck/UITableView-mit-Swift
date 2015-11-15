@@ -13,6 +13,8 @@ class ZutatenController: UITableViewController {
     var rezept: Rezept?
     var zutaten = [String]()
     
+    @IBOutlet weak var editToggle: UIBarButtonItem!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -36,7 +38,26 @@ class ZutatenController: UITableViewController {
         return cell
     }
 
-
+    //
+    //
+    // Tabellenzeilen neu ordnen
+    
+    @IBAction func editTapped(sender: AnyObject) {
+        self.editing = !editing
+        
+        if self.editing {
+            editToggle.title = "Done"
+        } else {
+            editToggle.title = "Edit"
+        }
+    }
+    
+    override func tableView(tableView: UITableView, moveRowAtIndexPath fromIndexPath: NSIndexPath, toIndexPath destinationIndexPath: NSIndexPath) {
+        
+        //
+        // reihenfolge im attribut xyz speichern/verändern
+    }
+    
     /*
     // Override to support conditional editing of the table view.
     override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
