@@ -103,12 +103,10 @@
 		02CA27D61BF884FA008D258E /* UITableView-mit-Swift */ = {
 			isa = PBXGroup;
 			children = (
+				02CA280D1BF8986F008D258E /* Visual */,
 				02CA280C1BF88881008D258E /* Model */,
 				02CA27D71BF884FA008D258E /* AppDelegate.swift */,
 				02CA27D91BF884FA008D258E /* ViewController.swift */,
-				02CA27DB1BF884FA008D258E /* Main.storyboard */,
-				02CA27E11BF884FA008D258E /* Assets.xcassets */,
-				02CA27E31BF884FA008D258E /* LaunchScreen.storyboard */,
 				02CA27E61BF884FA008D258E /* Info.plist */,
 				02CA27DE1BF884FA008D258E /* UITableView_mit_Swift.xcdatamodeld */,
 			);
@@ -140,6 +138,16 @@
 				02CA280A1BF88782008D258E /* Rezept.swift */,
 			);
 			name = Model;
+			sourceTree = "<group>";
+		};
+		02CA280D1BF8986F008D258E /* Visual */ = {
+			isa = PBXGroup;
+			children = (
+				02CA27DB1BF884FA008D258E /* Main.storyboard */,
+				02CA27E11BF884FA008D258E /* Assets.xcassets */,
+				02CA27E31BF884FA008D258E /* LaunchScreen.storyboard */,
+			);
+			name = Visual;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
