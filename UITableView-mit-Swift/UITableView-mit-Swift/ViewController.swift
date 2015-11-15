@@ -14,10 +14,15 @@ MFMailComposeViewControllerDelegate {
 
     @IBOutlet weak var tableView: UITableView!
     
+    let refreshControl = UIRefreshControl()
     let rezeptbuch = Rezeptbuch()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        refreshControl.attributedTitle = NSAttributedString(string: "Neue Rezepte laden...")
+        refreshControl.addTarget(self, action: "refreshRezepte:", forControlEvents: .ValueChanged)
+        tableView.addSubview(refreshControl)
     }
 
     //
@@ -148,6 +153,15 @@ MFMailComposeViewControllerDelegate {
     func tableView(tableView: UITableView, sectionForSectionIndexTitle title: String, atIndex index: Int) -> Int {
         
         return indexChars.indexOf(title)!
+    }
+    
+    //
+    //
+    // Pull to refresh
+    
+    func refreshRezepte(sender: AnyObject) {
+        print("Rezepte werden heruntergeladen...")
+        refreshControl.endRefreshing()
     }
 }
 
