@@ -39,5 +39,14 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         
         return cell
     }
+    
+    //
+    //
+    // header für sections
+    
+    func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        
+        return rezeptbuch.getNameForSection(section)
+    }
 }
 
