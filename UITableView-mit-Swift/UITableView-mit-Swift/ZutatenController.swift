@@ -73,4 +73,21 @@ class ZutatenController: UITableViewController {
             )
         }
     }
+    
+    //
+    //
+    // zutaten hinzufügen
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        
+        if segue.identifier == "neueZutat" {
+            let ctrl = segue.destinationViewController as! SaveController
+            ctrl.saveDelegate = {
+                (newEntry: String) in
+                
+                self.zutaten.append(newEntry)
+                self.navigationController?.popViewControllerAnimated(true)
+            }
+        }
+    }
 }

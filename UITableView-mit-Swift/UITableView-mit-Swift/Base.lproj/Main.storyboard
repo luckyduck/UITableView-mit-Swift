@@ -4,6 +4,7 @@
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9051"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="Navigation items with more than one left or right bar item" minToolsVersion="7.0"/>
     </dependencies>
     <scenes>
         <!--Meine Rezepte-->
@@ -111,7 +112,7 @@
             </objects>
             <point key="canvasLocation" x="1520" y="341"/>
         </scene>
-        <!--Meine Rezepte-->
+        <!--Zutaten Controller-->
         <scene sceneID="4SP-W6-5qc">
             <objects>
                 <tableViewController id="8jh-Lj-VBc" customClass="ZutatenController" customModule="UITableView_mit_Swift" customModuleProvider="target" sceneMemberID="viewController">
@@ -137,12 +138,19 @@
                             <outlet property="delegate" destination="8jh-Lj-VBc" id="CoD-dN-E9h"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Meine Rezepte" id="PM0-G4-HDQ">
-                        <barButtonItem key="rightBarButtonItem" title="Edit" style="plain" id="bW6-qf-oGo">
-                            <connections>
-                                <action selector="editTapped:" destination="8jh-Lj-VBc" id="da9-6w-Zg8"/>
-                            </connections>
-                        </barButtonItem>
+                    <navigationItem key="navigationItem" id="PM0-G4-HDQ">
+                        <rightBarButtonItems>
+                            <barButtonItem title="Edit" style="plain" id="bW6-qf-oGo">
+                                <connections>
+                                    <action selector="editTapped:" destination="8jh-Lj-VBc" id="da9-6w-Zg8"/>
+                                </connections>
+                            </barButtonItem>
+                            <barButtonItem title="Neu" id="pgB-sU-mxK">
+                                <connections>
+                                    <segue destination="3qk-i6-sta" kind="show" identifier="neueZutat" id="S6I-1f-h8E"/>
+                                </connections>
+                            </barButtonItem>
+                        </rightBarButtonItems>
                     </navigationItem>
                     <connections>
                         <outlet property="editToggle" destination="bW6-qf-oGo" id="paS-QH-hXg"/>
@@ -151,6 +159,71 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="oiL-5u-how" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1520" y="1064"/>
+        </scene>
+        <!--Save Controller-->
+        <scene sceneID="B8u-vy-N7Y">
+            <objects>
+                <viewController id="3qk-i6-sta" customClass="SaveController" customModule="UITableView_mit_Swift" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="ddz-fd-dPC"/>
+                        <viewControllerLayoutGuide type="bottom" id="nLv-36-TJz"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="ytu-Kc-2sK">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Neue Zutat:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0SB-TP-1TF">
+                                <rect key="frame" x="255" y="128" width="91" height="21"/>
+                                <animations/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="21" id="MXd-x5-7hP"/>
+                                    <constraint firstAttribute="width" constant="91" id="ajT-5J-TCy"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="XkL-14-Af3">
+                                <rect key="frame" x="199" y="189" width="202" height="30"/>
+                                <animations/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="edX-4a-5hj"/>
+                                    <constraint firstAttribute="width" constant="202" id="hzT-qe-SGi"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="E3d-f2-ItV">
+                                <rect key="frame" x="265" y="263" width="70" height="30"/>
+                                <animations/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="58J-VA-DKt"/>
+                                    <constraint firstAttribute="width" constant="70" id="r0u-RA-UIk"/>
+                                </constraints>
+                                <state key="normal" title="Speichern"/>
+                                <connections>
+                                    <action selector="saveTapped:" destination="3qk-i6-sta" eventType="touchUpInside" id="s2e-G4-tGV"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <animations/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="XkL-14-Af3" firstAttribute="top" secondItem="0SB-TP-1TF" secondAttribute="bottom" constant="40" id="CEm-tM-THo"/>
+                            <constraint firstItem="0SB-TP-1TF" firstAttribute="top" secondItem="ddz-fd-dPC" secondAttribute="bottom" constant="64" id="OaF-w5-9Bu"/>
+                            <constraint firstItem="E3d-f2-ItV" firstAttribute="centerX" secondItem="ytu-Kc-2sK" secondAttribute="centerX" id="V0O-7e-75d"/>
+                            <constraint firstItem="XkL-14-Af3" firstAttribute="centerX" secondItem="ytu-Kc-2sK" secondAttribute="centerX" id="c2O-Tl-WZG"/>
+                            <constraint firstItem="0SB-TP-1TF" firstAttribute="centerX" secondItem="ytu-Kc-2sK" secondAttribute="centerX" id="d1D-sH-nbn"/>
+                            <constraint firstItem="E3d-f2-ItV" firstAttribute="top" secondItem="XkL-14-Af3" secondAttribute="bottom" constant="44" id="j0X-Hd-bhu"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="textField" destination="XkL-14-Af3" id="GrQ-bj-gvc"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="MD5-Ur-ZAV" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2255" y="1064"/>
         </scene>
         <!--Table View Controller-->
         <scene sceneID="nzh-ZW-rHD">
