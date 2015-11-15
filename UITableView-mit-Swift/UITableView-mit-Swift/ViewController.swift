@@ -7,8 +7,10 @@
 //
 
 import UIKit
+import MessageUI
 
-class ViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+class ViewController: UIViewController, UITableViewDataSource, UITableViewDelegate,
+MFMailComposeViewControllerDelegate {
 
     @IBOutlet weak var tableView: UITableView!
     
@@ -79,6 +81,49 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
             let ctrl = segue.destinationViewController as! ZutatenController
             ctrl.rezept = rezept
         }
+    }
+    
+    //
+    //
+    // editactions
+    func tableView(tableView: UITableView, editActionsForRowAtIndexPath indexPath: NSIndexPath) -> [UITableViewRowAction]? {
+        
+        let mailAction = UITableViewRowAction(
+            style: .Default,
+            title: "Mail") {
+                (action: UITableViewRowAction, indexPath: NSIndexPath) -> Void in
+                
+            let rezept = self.rezeptbuch.rezepte[indexPath.section][indexPath.row]
+                
+            let composeView = MFMailComposeViewController()
+                composeView.mailComposeDelegate = self
+                composeView.setToRecipients(["info@codingtutor.de"])
+                composeView.setSubject("Es funktioniert!")
+                composeView.setMessageBody(
+                    "Hi Jan,\nHier ist mein \(rezept.title) Rezept", isHTML: false)
+                
+                if MFMailComposeViewController.canSendMail() {
+                    self.presentViewController(composeView, animated: true, completion: nil)
+                } else {
+                    let alert = UIAlertController(title: "Oh",
+                        message: "Mailversand nicht möglich",
+                        preferredStyle: .Alert)
+                    
+                    alert.addAction(UIAlertAction(title: "OK", style: .Default, handler: nil))
+                
+                    self.presentViewController(alert, animated: true, completion: nil)
+                }
+        }
+        
+        mailAction.backgroundColor = UIColor.blueColor()
+        
+        return [mailAction]
+    }
+    
+    func mailComposeController(controller: MFMailComposeViewController, didFinishWithResult result: MFMailComposeResult, error: NSError?) {
+        
+        controller.dismissViewControllerAnimated(true, completion: nil)
+        tableView.setEditing(false, animated: true)
     }
 }
 
