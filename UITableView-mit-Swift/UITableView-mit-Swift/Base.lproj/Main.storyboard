@@ -3,6 +3,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9051"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
         <!--Meine Rezepte-->
@@ -22,15 +23,61 @@
                                 <animations/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="rezeptCell" id="l3K-H9-fo4">
-                                        <rect key="frame" x="0.0" y="92" width="600" height="44"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="rezeptCell" rowHeight="80" id="l3K-H9-fo4" customClass="RezeptCell" customModule="UITableView_mit_Swift" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="92" width="600" height="80"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="l3K-H9-fo4" id="IRk-jT-QOT">
-                                            <rect key="frame" x="0.0" y="0.0" width="600" height="43"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="79"/>
                                             <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="8iA-68-3Fs">
+                                                    <rect key="frame" x="8" y="2" width="75" height="75"/>
+                                                    <animations/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="75" id="gqS-L0-gUP"/>
+                                                        <constraint firstAttribute="height" constant="75" id="pQU-r0-WpQ"/>
+                                                    </constraints>
+                                                </imageView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Zhd-qT-HhX">
+                                                    <rect key="frame" x="91" y="8" width="501" height="21"/>
+                                                    <animations/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="21" id="5MC-bD-nPU"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ICf-ao-AlJ">
+                                                    <rect key="frame" x="91" y="42" width="501" height="21"/>
+                                                    <animations/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="21" id="eu8-Sz-kDk"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
                                             <animations/>
+                                            <constraints>
+                                                <constraint firstItem="8iA-68-3Fs" firstAttribute="leading" secondItem="IRk-jT-QOT" secondAttribute="leading" constant="8" id="6qA-68-BOW"/>
+                                                <constraint firstItem="ICf-ao-AlJ" firstAttribute="trailing" secondItem="IRk-jT-QOT" secondAttribute="trailingMargin" id="Ahs-vh-eCc"/>
+                                                <constraint firstItem="8iA-68-3Fs" firstAttribute="top" secondItem="IRk-jT-QOT" secondAttribute="top" constant="2" id="UjN-m3-sWM"/>
+                                                <constraint firstItem="Zhd-qT-HhX" firstAttribute="top" secondItem="IRk-jT-QOT" secondAttribute="top" constant="8" id="ccd-Gn-WTe"/>
+                                                <constraint firstItem="ICf-ao-AlJ" firstAttribute="top" secondItem="Zhd-qT-HhX" secondAttribute="bottom" constant="13" id="hIJ-hx-fQm"/>
+                                                <constraint firstItem="Zhd-qT-HhX" firstAttribute="trailing" secondItem="IRk-jT-QOT" secondAttribute="trailingMargin" id="jqo-gp-Ljh"/>
+                                                <constraint firstItem="Zhd-qT-HhX" firstAttribute="leading" secondItem="8iA-68-3Fs" secondAttribute="trailing" constant="8" id="nLm-9X-rX7"/>
+                                                <constraint firstItem="ICf-ao-AlJ" firstAttribute="leading" secondItem="8iA-68-3Fs" secondAttribute="trailing" constant="8" id="sk2-ZR-WwS"/>
+                                                <constraint firstAttribute="bottom" secondItem="8iA-68-3Fs" secondAttribute="bottom" constant="2" id="zhr-4E-qhY"/>
+                                            </constraints>
                                         </tableViewCellContentView>
                                         <animations/>
+                                        <connections>
+                                            <outlet property="rezeptImage" destination="8iA-68-3Fs" id="7in-GY-mYW"/>
+                                            <outlet property="rezeptName" destination="Zhd-qT-HhX" id="RSJ-oH-TzL"/>
+                                            <outlet property="rezeptZutaten" destination="ICf-ao-AlJ" id="MWh-55-o3w"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                                 <connections>

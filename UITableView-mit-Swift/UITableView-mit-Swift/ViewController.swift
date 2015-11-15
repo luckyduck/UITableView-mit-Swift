@@ -33,11 +33,23 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
 
         let rezept = rezeptbuch.rezepte[indexPath.section][indexPath.row]
-        let cell = tableView.dequeueReusableCellWithIdentifier("rezeptCell")!
+        let cell = tableView.dequeueReusableCellWithIdentifier("rezeptCell") as! RezeptCell
         
-        cell.textLabel?.text = rezept.title
+        cell.rezeptName.text = rezept.title
+        cell.rezeptImage.image = UIImage(named: rezept.bild)
+        
+        let zutatenCount = rezept.zutaten.count
+        cell.rezeptZutaten.text = "\(zutatenCount) Zutaten"
+        
+        // accessory type
+        cell.accessoryType = UITableViewCellAccessoryType.DisclosureIndicator
         
         return cell
+    }
+    
+    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        
+        return CGFloat(80)
     }
     
     //
