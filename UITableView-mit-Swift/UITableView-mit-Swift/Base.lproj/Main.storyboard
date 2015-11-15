@@ -104,17 +104,17 @@
                     </navigationItem>
                     <connections>
                         <outlet property="tableView" destination="WFE-Ia-qV8" id="cIV-g5-Fwu"/>
-                        <segue destination="8jh-Lj-VBc" kind="show" id="JvP-f7-xgZ"/>
+                        <segue destination="8jh-Lj-VBc" kind="show" identifier="zutatenAnzeigen" id="JvP-f7-xgZ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1520" y="341"/>
         </scene>
-        <!--Table View Controller-->
+        <!--Zutaten Controller-->
         <scene sceneID="4SP-W6-5qc">
             <objects>
-                <tableViewController id="8jh-Lj-VBc" sceneMemberID="viewController">
+                <tableViewController id="8jh-Lj-VBc" customClass="ZutatenController" customModule="UITableView_mit_Swift" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="lL2-Gp-nO3">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

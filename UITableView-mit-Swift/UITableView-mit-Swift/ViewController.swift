@@ -55,10 +55,30 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     //
     //
     // header für sections
-    
     func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         
         return rezeptbuch.getNameForSection(section)
+    }
+    
+    //
+    //
+    // delegate / interaktion
+    
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        
+        self.performSegueWithIdentifier("zutatenAnzeigen", sender: indexPath)
+    }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?)
+    {
+        if segue.identifier == "zutatenAnzeigen" {
+            let indexPath = sender as! NSIndexPath
+            
+            let rezept = rezeptbuch.rezepte[indexPath.section][indexPath.row]
+        
+            let ctrl = segue.destinationViewController as! ZutatenController
+            ctrl.rezept = rezept
+        }
     }
 }
 
