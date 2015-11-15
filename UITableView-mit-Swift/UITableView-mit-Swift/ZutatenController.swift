@@ -11,7 +11,11 @@ import UIKit
 class ZutatenController: UITableViewController {
 
     var rezept: Rezept?
-    var zutaten = [String]()
+    var zutaten = [String]() {
+        didSet {
+            self.tableView.reloadData()
+        }
+    }
     
     @IBOutlet weak var editToggle: UIBarButtonItem!
     
@@ -87,6 +91,7 @@ class ZutatenController: UITableViewController {
                 
                 self.zutaten.append(newEntry)
                 self.navigationController?.popViewControllerAnimated(true)
+                
             }
         }
     }
