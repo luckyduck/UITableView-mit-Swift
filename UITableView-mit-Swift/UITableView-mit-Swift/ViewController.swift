@@ -125,5 +125,29 @@ MFMailComposeViewControllerDelegate {
         controller.dismissViewControllerAnimated(true, completion: nil)
         tableView.setEditing(false, animated: true)
     }
+    
+    //
+    //
+    // Tabellenindex
+    
+    var indexChars = [String]()
+    
+    func sectionIndexTitlesForTableView(tableView: UITableView) -> [String]? {
+        
+        for name in rezeptbuch.kategorien {
+            let firstChar = String(name.characters.first!)
+            
+            if !indexChars.contains(firstChar) {
+                indexChars.append(firstChar)
+            }
+        }
+        
+        return indexChars
+    }
+    
+    func tableView(tableView: UITableView, sectionForSectionIndexTitle title: String, atIndex index: Int) -> Int {
+        
+        return indexChars.indexOf(title)!
+    }
 }
 

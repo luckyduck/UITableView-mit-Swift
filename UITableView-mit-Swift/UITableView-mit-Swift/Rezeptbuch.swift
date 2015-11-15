@@ -9,7 +9,7 @@
 import Foundation
 
 class Rezeptbuch {
-    let kategorien = ["Frühstück", "Mittag"]
+    let kategorien = ["Frühstück", "Mittag", "Abendessen", "Kaffee"]
     var rezepte: [[Rezept]]
     
     init() {
@@ -51,6 +51,46 @@ class Rezeptbuch {
                 "Essig", "Speiseöl", "Gewürze"
             ]
         ))
+        
+        // mittag
+        rezepte.append([Rezept]())
+        rezepte[2].append(Rezept(
+            title: "Nudeln mit Tomatensoße",
+            bild: "pasta",
+            zutaten: [
+                "Nudeln nach Wahl", "passierte Tomaten", "Knoblauch",
+                "Prise Salz", "Olivenöl", "Gewürze"
+            ]
+            ))
+        
+        rezepte[2].append(Rezept(
+            title: "Tofu Salat",
+            bild: "salat",
+            zutaten: [
+                "Tofu", "Kurkuma", "Beliebiger Salat",
+                "Essig", "Speiseöl", "Gewürze"
+            ]
+            ))
+        
+        // abends
+        rezepte.append([Rezept]())
+        rezepte[3].append(Rezept(
+            title: "Nudeln mit Tomatensoße",
+            bild: "pasta",
+            zutaten: [
+                "Nudeln nach Wahl", "passierte Tomaten", "Knoblauch",
+                "Prise Salz", "Olivenöl", "Gewürze"
+            ]
+            ))
+        
+        rezepte[3].append(Rezept(
+            title: "Tofu Salat",
+            bild: "salat",
+            zutaten: [
+                "Tofu", "Kurkuma", "Beliebiger Salat",
+                "Essig", "Speiseöl", "Gewürze"
+            ]
+            ))
     }
     
     func getNameForSection(section: Int) -> String {
