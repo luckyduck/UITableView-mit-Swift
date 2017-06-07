@@ -243,13 +243,16 @@
 				TargetAttributes = {
 					02CA27D31BF884FA008D258E = {
 						CreatedOnToolsVersion = 7.1.1;
+						LastSwiftMigration = 0830;
 					};
 					02CA27EA1BF884FA008D258E = {
 						CreatedOnToolsVersion = 7.1.1;
+						LastSwiftMigration = 0830;
 						TestTargetID = 02CA27D31BF884FA008D258E;
 					};
 					02CA27F51BF884FA008D258E = {
 						CreatedOnToolsVersion = 7.1.1;
+						LastSwiftMigration = 0830;
 						TestTargetID = 02CA27D31BF884FA008D258E;
 					};
 				};
@@ -459,6 +462,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "de.janbrinkmann.UITableView-mit-Swift";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
@@ -470,6 +474,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "de.janbrinkmann.UITableView-mit-Swift";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
 		};
@@ -481,6 +486,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "de.janbrinkmann.UITableView-mit-SwiftTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/UITableView-mit-Swift.app/UITableView-mit-Swift";
 			};
 			name = Debug;
@@ -493,6 +499,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "de.janbrinkmann.UITableView-mit-SwiftTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/UITableView-mit-Swift.app/UITableView-mit-Swift";
 			};
 			name = Release;
@@ -504,6 +511,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "de.janbrinkmann.UITableView-mit-SwiftUITests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 				TEST_TARGET_NAME = "UITableView-mit-Swift";
 				USES_XCTRUNNER = YES;
 			};
@@ -516,6 +524,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "de.janbrinkmann.UITableView-mit-SwiftUITests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 				TEST_TARGET_NAME = "UITableView-mit-Swift";
 				USES_XCTRUNNER = YES;
 			};
@@ -540,6 +549,7 @@
 				02CA28011BF884FA008D258E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		02CA28021BF884FA008D258E /* Build configuration list for PBXNativeTarget "UITableView-mit-SwiftTests" */ = {
 			isa = XCConfigurationList;
@@ -548,6 +558,7 @@
 				02CA28041BF884FA008D258E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		02CA28051BF884FA008D258E /* Build configuration list for PBXNativeTarget "UITableView-mit-SwiftUITests" */ = {
 			isa = XCConfigurationList;
@@ -556,6 +567,7 @@
 				02CA28071BF884FA008D258E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 

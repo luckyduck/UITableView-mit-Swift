@@ -93,7 +93,7 @@ class Rezeptbuch {
             ))
     }
     
-    func getNameForSection(section: Int) -> String {
+    func getNameForSection(_ section: Int) -> String {
         return kategorien[section]
     }
 }

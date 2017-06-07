@@ -34,7 +34,7 @@ class ZutatenController: UITableViewController, UISearchBarDelegate {
     }
 
     // MARK: - Table view data source
-    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
         if isSearching {
             return filterZutaten.count
@@ -43,8 +43,8 @@ class ZutatenController: UITableViewController, UISearchBarDelegate {
         return zutaten.count
     }
 
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("zutatCell", forIndexPath: indexPath)
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "zutatCell", for: indexPath)
 
         if isSearching {
             cell.textLabel?.text = filterZutaten[indexPath.row]
@@ -59,17 +59,17 @@ class ZutatenController: UITableViewController, UISearchBarDelegate {
     //
     // Tabellenzeilen neu ordnen
     
-    @IBAction func editTapped(sender: AnyObject) {
-        self.editing = !editing
+    @IBAction func editTapped(_ sender: AnyObject) {
+        self.isEditing = !isEditing
         
-        if self.editing {
+        if self.isEditing {
             editToggle.title = "Done"
         } else {
             editToggle.title = "Edit"
         }
     }
     
-    override func tableView(tableView: UITableView, moveRowAtIndexPath fromIndexPath: NSIndexPath, toIndexPath destinationIndexPath: NSIndexPath) {
+    override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
         
         // ...
         // reihenfolge im attribut 
@@ -80,13 +80,13 @@ class ZutatenController: UITableViewController, UISearchBarDelegate {
     //
     //
     // einträge löschen
-    override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
+    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         
-        if editingStyle == .Delete {
-            zutaten.removeAtIndex(indexPath.row)
+        if editingStyle == .delete {
+            zutaten.remove(at: indexPath.row)
             
-            tableView.deleteRowsAtIndexPaths([indexPath],
-                withRowAnimation: .Automatic
+            tableView.deleteRows(at: [indexPath],
+                with: .automatic
             )
         }
     }
@@ -95,15 +95,15 @@ class ZutatenController: UITableViewController, UISearchBarDelegate {
     //
     // zutaten hinzufügen
     
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
         if segue.identifier == "neueZutat" {
-            let ctrl = segue.destinationViewController as! SaveController
+            let ctrl = segue.destination as! SaveController
             ctrl.saveDelegate = {
                 (newEntry: String) in
                 
                 self.zutaten.append(newEntry)
-                self.navigationController?.popViewControllerAnimated(true)
+                self.navigationController?.popViewController(animated: true)
                 
             }
         }
@@ -113,28 +113,28 @@ class ZutatenController: UITableViewController, UISearchBarDelegate {
     //
     // searchbar delegate
     
-    func searchBarTextDidBeginEditing(searchBar: UISearchBar) {
+    func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
         isSearching = true;
     }
     
-    func searchBarTextDidEndEditing(searchBar: UISearchBar) {
+    func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
         isSearching = false;
     }
     
-    func searchBarCancelButtonClicked(searchBar: UISearchBar) {
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
         isSearching = false;
     }
 
-    func searchBarSearchButtonClicked(searchBar: UISearchBar) {
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         isSearching = false;
     }
     
-    func searchBar(searchBar: UISearchBar, textDidChange searchText: String) {
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         
         filterZutaten = zutaten.filter({
             (zutat: String) -> Bool in
             
-            return zutat.containsString(searchText)
+            return zutat.contains(searchText)
         })
         
         if filterZutaten.count == 0 {

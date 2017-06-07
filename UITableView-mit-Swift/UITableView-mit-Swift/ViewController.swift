@@ -21,26 +21,26 @@ MFMailComposeViewControllerDelegate {
         super.viewDidLoad()
         
         refreshControl.attributedTitle = NSAttributedString(string: "Neue Rezepte laden...")
-        refreshControl.addTarget(self, action: "refreshRezepte:", forControlEvents: .ValueChanged)
+        refreshControl.addTarget(self, action: #selector(ViewController.refreshRezepte(_:)), for: .valueChanged)
         tableView.addSubview(refreshControl)
     }
 
     //
     //
     // datasource
-    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    func numberOfSections(in tableView: UITableView) -> Int {
         return rezeptbuch.rezepte.count
     }
     
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
         return rezeptbuch.rezepte[section].count
     }
 
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 
         let rezept = rezeptbuch.rezepte[indexPath.section][indexPath.row]
-        let cell = tableView.dequeueReusableCellWithIdentifier("rezeptCell") as! RezeptCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "rezeptCell") as! RezeptCell
         
         cell.rezeptName.text = rezept.title
         cell.rezeptImage.image = UIImage(named: rezept.bild)
@@ -49,12 +49,12 @@ MFMailComposeViewControllerDelegate {
         cell.rezeptZutaten.text = "\(zutatenCount) Zutaten"
         
         // accessory type
-        cell.accessoryType = UITableViewCellAccessoryType.DisclosureIndicator
+        cell.accessoryType = UITableViewCellAccessoryType.disclosureIndicator
         
         return cell
     }
     
-    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         
         return CGFloat(80)
     }
@@ -62,7 +62,7 @@ MFMailComposeViewControllerDelegate {
     //
     //
     // header für sections
-    func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         
         return rezeptbuch.getNameForSection(section)
     }
@@ -71,19 +71,19 @@ MFMailComposeViewControllerDelegate {
     //
     // delegate / interaktion
     
-    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
-        self.performSegueWithIdentifier("zutatenAnzeigen", sender: indexPath)
+        self.performSegue(withIdentifier: "zutatenAnzeigen", sender: indexPath)
     }
     
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?)
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?)
     {
         if segue.identifier == "zutatenAnzeigen" {
-            let indexPath = sender as! NSIndexPath
+            let indexPath = sender as! IndexPath
             
             let rezept = rezeptbuch.rezepte[indexPath.section][indexPath.row]
         
-            let ctrl = segue.destinationViewController as! ZutatenController
+            let ctrl = segue.destination as! ZutatenController
             ctrl.rezept = rezept
         }
     }
@@ -91,12 +91,12 @@ MFMailComposeViewControllerDelegate {
     //
     //
     // editactions
-    func tableView(tableView: UITableView, editActionsForRowAtIndexPath indexPath: NSIndexPath) -> [UITableViewRowAction]? {
+    func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
         
         let mailAction = UITableViewRowAction(
-            style: .Default,
+            style: .default,
             title: "Mail") {
-                (action: UITableViewRowAction, indexPath: NSIndexPath) -> Void in
+                (action: UITableViewRowAction, indexPath: IndexPath) -> Void in
                 
             let rezept = self.rezeptbuch.rezepte[indexPath.section][indexPath.row]
                 
@@ -108,26 +108,26 @@ MFMailComposeViewControllerDelegate {
                     "Hi Jan,\nHier ist mein \(rezept.title) Rezept", isHTML: false)
                 
                 if MFMailComposeViewController.canSendMail() {
-                    self.presentViewController(composeView, animated: true, completion: nil)
+                    self.present(composeView, animated: true, completion: nil)
                 } else {
                     let alert = UIAlertController(title: "Oh",
                         message: "Mailversand nicht möglich",
-                        preferredStyle: .Alert)
+                        preferredStyle: .alert)
                     
-                    alert.addAction(UIAlertAction(title: "OK", style: .Default, handler: nil))
+                    alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
                 
-                    self.presentViewController(alert, animated: true, completion: nil)
+                    self.present(alert, animated: true, completion: nil)
                 }
         }
         
-        mailAction.backgroundColor = UIColor.blueColor()
+        mailAction.backgroundColor = UIColor.blue
         
         return [mailAction]
     }
     
-    func mailComposeController(controller: MFMailComposeViewController, didFinishWithResult result: MFMailComposeResult, error: NSError?) {
+    func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?) {
         
-        controller.dismissViewControllerAnimated(true, completion: nil)
+        controller.dismiss(animated: true, completion: nil)
         tableView.setEditing(false, animated: true)
     }
     
@@ -137,7 +137,7 @@ MFMailComposeViewControllerDelegate {
     
     var indexChars = [String]()
     
-    func sectionIndexTitlesForTableView(tableView: UITableView) -> [String]? {
+    func sectionIndexTitles(for tableView: UITableView) -> [String]? {
         
         for name in rezeptbuch.kategorien {
             let firstChar = String(name.characters.first!)
@@ -150,16 +150,16 @@ MFMailComposeViewControllerDelegate {
         return indexChars
     }
     
-    func tableView(tableView: UITableView, sectionForSectionIndexTitle title: String, atIndex index: Int) -> Int {
+    func tableView(_ tableView: UITableView, sectionForSectionIndexTitle title: String, at index: Int) -> Int {
         
-        return indexChars.indexOf(title)!
+        return indexChars.index(of: title)!
     }
     
     //
     //
     // Pull to refresh
     
-    func refreshRezepte(sender: AnyObject) {
+    func refreshRezepte(_ sender: AnyObject) {
         print("Rezepte werden heruntergeladen...")
         refreshControl.endRefreshing()
     }

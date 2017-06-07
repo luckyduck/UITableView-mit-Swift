@@ -19,7 +19,7 @@ class SaveController: UIViewController {
 
     }
     
-    @IBAction func saveTapped(sender: AnyObject) {
+    @IBAction func saveTapped(_ sender: AnyObject) {
         let newEntry = textField.text
         
         if saveDelegate != nil {
